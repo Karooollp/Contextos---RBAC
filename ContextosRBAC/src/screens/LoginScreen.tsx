@@ -3,7 +3,7 @@ import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
 import { useState } from "react";
 import { Alert } from "react-native";
-import LoginAndRegisterCard from "../components/LoginAndRegisterCard";
+import Card from "../components/Card";
 import { useAuth } from "../contexts/AuthContext";
 import { Picker } from "@react-native-picker/picker";
 
@@ -17,34 +17,23 @@ export function LoginScreen({navigation}: any) {
   
   //Se llamo una variable loca proveniente de AuthContextType el cual esta tipado en Auth
   
-    const handleLogin = async () => {
+  const handleLogin = async () => {
+    try {
+      const allowed = login(email, role);
       
-      try {
-        
-        const allowed = login(email, role);
-        
-        if (!allowed){
-          
-          Alert.alert(
-            "Error",
-            "El correo debe terminar en .edu"
-          );
-          
-          return;
-        }
-        
-        navigation.navigate("Profile");
-        
-      } catch (error) {
-        
-        console.log(error);
-        
+      if (!allowed) {
+        Alert.alert("Error", "El correo debe terminar en .edu");
+        return;
       }
-    };
+      navigation.navigate("Tabs");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
   return (
     
-    <LoginAndRegisterCard>
+    <Card>
       
       <CustomInput
         placeholder={"Ingresa tu correo"}
@@ -73,23 +62,11 @@ export function LoginScreen({navigation}: any) {
           <Picker.Item label="Admin" value="admin" />
           <Picker.Item label="Common" value="common" />
         </Picker>
-      
       </View>
-      
       <View style={{ marginTop: 10, width: '100%', alignItems: 'center' }}>
         <CustomButton title={"INICIAR SESIÓN"} onPress={handleLogin} />
       </View>
-      
-      <View style={{ marginTop: 10, width: '100%', alignItems: 'center' }}>
-        <Text>No tiene cuenta, Cree una ahora</Text>
-        <CustomButton
-          title={"Ir a registrarme"}
-          variant="secondary"
-          onPress={() => navigation.navigate("Register")}
-        />
-      </View>
-    
-    </LoginAndRegisterCard>
+    </Card>
   );
   
   

@@ -2,10 +2,10 @@ import { View, StyleSheet, ViewStyle } from "react-native";
 
 type Props = {
   children: React.ReactNode;
-  buttonContainerStyle?: ViewStyle;
+  style?: ViewStyle;
 };
 
-export default function LoginAndRegisterCard({ children }: Props) {
+export default function Card({ children }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
