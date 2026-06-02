@@ -10,7 +10,7 @@ import { Picker } from "@react-native-picker/picker";
 
 export function LoginScreen({navigation}: any) {
   const { login } = useAuth();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('misap@gmail.edu');
   const [password, setPasword] = useState('');
   const [role, setRole] =useState<"admin" | "common">("common");
   
@@ -25,7 +25,7 @@ export function LoginScreen({navigation}: any) {
         Alert.alert("Error", "El correo debe terminar en .edu");
         return;
       }
-      navigation.navigate("Tabs");
+      navigation.replace("Tabs");
     } catch (error) {
       console.log(error);
     }
