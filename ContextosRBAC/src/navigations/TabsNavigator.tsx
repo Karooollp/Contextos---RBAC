@@ -1,10 +1,10 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import {Ionicons} from "@expo/vector-icons";
 
 import HomeScreen from "../screens/HomeScreen";
 import SettingScreen from "../screens/Settings";
 
-import { useAuth } from "../contexts/AuthContext";
+import {useAuth} from "../contexts/AuthContext";
 
 type TabsParamList = {
   Home: undefined;
@@ -14,7 +14,7 @@ type TabsParamList = {
 const Tab = createBottomTabNavigator<TabsParamList>();
 
 export default function TabNavigator() {
-  const { user } = useAuth();
+  const {user} = useAuth();
   
   return (
     <Tab.Navigator
@@ -26,7 +26,7 @@ export default function TabNavigator() {
           backgroundColor: "#fff",
           borderTopColor: "#ddd",
         },
-        headerStyle: { backgroundColor: "#fff" },
+        headerStyle: {backgroundColor: "#fff"},
         headerTintColor: "#000",
       }}
     >
@@ -36,8 +36,8 @@ export default function TabNavigator() {
         component={HomeScreen}
         options={{
           title: "Inicio",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color={color} />
+          tabBarIcon: ({color, size}) => (
+            <Ionicons name="home" size={size} color={color}/>
           ),
         }}
       />
@@ -49,8 +49,8 @@ export default function TabNavigator() {
           component={SettingScreen}
           options={{
             title: "Configuración",
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name="settings" size={size} color={color} />
+            tabBarIcon: ({color, size}) => (
+              <Ionicons name="settings" size={size} color={color}/>
             ),
           }}
         />

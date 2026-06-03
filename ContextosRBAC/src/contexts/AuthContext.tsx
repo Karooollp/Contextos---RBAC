@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import {createContext, useContext, useState} from "react";
 
 //1. Tipado de objeto principal del contexto
 type User = {
@@ -9,8 +9,8 @@ type User = {
 
 type AuthContextType = {
   user: User | null;
-  login: (email: string,  role: "admin" | "common")=> boolean;
-  logout: ()=> void;
+  login: (email: string, role: "admin" | "common") => boolean;
+  logout: () => void;
 }
 
 
@@ -21,13 +21,12 @@ const AuthContext = createContext<AuthContextType | null>(null);
 //4. exposicion de contexto en forma de hook personalizdo
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) throw new Error ("useAuth debe usarse dentro de AuthProvider");
+  if (!context) throw new Error("useAuth debe usarse dentro de AuthProvider");
   return context;
 }
 
-
 //3. Crear el Provider: medio por el cual se maneja el estado global
-export const AuthProvider = ({children}: {children: React.ReactNode}) => {
+export const AuthProvider = ({children}: { children: React.ReactNode }) => {
   //inicializacion de estado con objeto y valores
   // const [user, setUser] = useState<User>({email:'mjsalinas@unitec.edu});
   
@@ -36,7 +35,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
   
   const login = (email: string, role: "admin" | "common"): boolean => {
     const allowed = email.endsWith('.edu');
-    if (allowed){
+    if (allowed) {
       setUser({email, role});
     }
     return allowed;

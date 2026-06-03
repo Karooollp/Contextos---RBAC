@@ -36,6 +36,7 @@ export function LoginScreen({navigation}: any) {
     <Card>
       
       <CustomInput
+        type="email"
         placeholder={"Ingresa tu correo"}
         value={email}
         onChange={setEmail}
@@ -68,6 +69,4 @@ export function LoginScreen({navigation}: any) {
       </View>
     </Card>
   );
-  
-  
 }
